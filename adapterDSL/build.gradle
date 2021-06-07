@@ -45,9 +45,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     /////////////////////////////////////////////////
     // page
-    api('androidx.paging:paging-runtime-ktx:3.0.0-alpha13') {
-        exclude group: 'org.jetbrains.kotlinx', module: 'kotlinx-coroutines-core-jvm'
-    }
+    api "androidx.paging:paging-runtime-ktx:3.0.0"
     /////////////////////////////////////////////////
     implementation 'com.github.Enjoyee:AndroidUtils:1.0.1'
 }
