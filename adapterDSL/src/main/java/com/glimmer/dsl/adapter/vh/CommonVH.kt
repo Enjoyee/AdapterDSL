@@ -37,7 +37,7 @@ class CommonVH<BEAN : Any, VB : ViewDataBinding>(
     override fun onClick(v: View?) {
         v?.let {
             clicker?.invoke(it, bean, itemPosition)
-            bindingAdapter?.notifyDataSetChanged()
+            refreshItem()
         }
     }
 
