@@ -1,7 +1,6 @@
 package com.glimmer.dsl.adapter.ext
 
 import android.content.Context
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,7 +49,10 @@ class AdapterSetup internal constructor(private val recyclerView: RecyclerView) 
 
 fun RecyclerView.submitDataSource(items: List<Any>, append: Boolean = false) {
     val list: List<Any> = if (append) {
-        val list: ArrayList<Any> = (adapter as? CommonListAdapterDsl)?.currentList as ArrayList<Any>
+        val list: ArrayList<Any> = arrayListOf()
+        (adapter as? CommonListAdapterDsl)?.currentList?.apply {
+            list.addAll(this)
+        }
         list.addAll(items)
         list
     } else {
