@@ -57,7 +57,13 @@ fun RecyclerView.submitDataSource(items: List<Any>, append: Boolean = false) {
         list.addAll(items)
         listAdapter?.submitList(list)
     } else {
-        if (listAdapter?.currentList.isNullOrEmpty()) {
+        var empty = true
+        var thSame = false
+        listAdapter?.currentList?.let {
+            empty = it.isNullOrEmpty()
+            thSame = it.size == items.size
+        }
+        if (empty || !thSame) {
             val list = arrayListOf<Any>().apply { addAll(items) }
             listAdapter?.submitList(list)
         } else {
