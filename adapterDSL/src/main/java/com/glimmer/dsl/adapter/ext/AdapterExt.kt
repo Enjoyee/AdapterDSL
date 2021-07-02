@@ -58,10 +58,10 @@ fun RecyclerView.submitDataSource(items: List<Any>, append: Boolean = false) {
         listAdapter?.submitList(list)
     } else {
         if (listAdapter?.currentList.isNullOrEmpty()) {
-            listAdapter?.notifyDataSetChanged()
-        } else {
             val list = arrayListOf<Any>().apply { addAll(items) }
             listAdapter?.submitList(list)
+        } else {
+            listAdapter?.notifyDataSetChanged()
         }
     }
 
