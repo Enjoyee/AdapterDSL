@@ -48,15 +48,21 @@ class AdapterSetup internal constructor(private val recyclerView: RecyclerView) 
 }
 
 fun RecyclerView.submitDataSource(items: List<Any>, append: Boolean = false) {
-    val list: List<Any> = if (append) {
+    val listAdapter = adapter as? CommonListAdapterDsl
+    if (append) {
         val list: ArrayList<Any> = arrayListOf()
-        (adapter as? CommonListAdapterDsl)?.currentList?.apply {
+        listAdapter?.currentList?.apply {
             list.addAll(this)
         }
         list.addAll(items)
-        list
+        listAdapter?.submitList(list)
     } else {
-        arrayListOf<Any>().apply { addAll(items) }
+        if (listAdapter?.currentList.isNullOrEmpty()) {
+            listAdapter?.notifyDataSetChanged()
+        } else {
+            val list = arrayListOf<Any>().apply { addAll(items) }
+            listAdapter?.submitList(list)
+        }
     }
-    (adapter as? CommonListAdapterDsl)?.submitList(list)
+
 }
