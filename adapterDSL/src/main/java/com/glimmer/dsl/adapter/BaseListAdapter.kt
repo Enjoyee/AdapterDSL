@@ -35,7 +35,10 @@ abstract class BaseListAdapter<VH : BaseVH<Any, *>>(callback: ItemDiffCallback<A
 
     override fun getItemId(position: Int): Long {
         getItem(position)?.apply {
-            return hashCode().toLong()
+            doWithTry {
+                return hashCode().toLong()
+            }
+            return super.getItemId(position)
         }
         return super.getItemId(position)
     }
