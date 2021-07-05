@@ -36,6 +36,7 @@ class AdapterSetup internal constructor(private val recyclerView: RecyclerView) 
 
     fun listItem(init: CommonListAdapterDsl.() -> Unit) {
         this.adapter = CommonListAdapterDsl()
+        adapter.setHasStableIds(true)
         init.invoke(adapter)
         if (recyclerView.layoutManager == null) {
             recyclerView.layoutManager = LinearLayoutManager(context)

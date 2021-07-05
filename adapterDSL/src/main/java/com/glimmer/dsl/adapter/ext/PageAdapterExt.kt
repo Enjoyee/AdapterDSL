@@ -32,6 +32,7 @@ class PageAdapterSetup internal constructor(private val recyclerView: RecyclerVi
 
     fun listItem(init: CommonPageListAdapterDsl.() -> Unit) {
         this.adapter = CommonPageListAdapterDsl()
+        adapter.setHasStableIds(true)
         init.invoke(adapter)
         if (recyclerView.layoutManager == null) {
             recyclerView.layoutManager = LinearLayoutManager(context)
