@@ -33,6 +33,10 @@ abstract class BaseListAdapter<VH : BaseVH<Any, *>>(callback: ItemDiffCallback<A
         }
     }
 
+    override fun getItemId(position: Int): Long {
+        return getItem(position).hashCode().toLong()
+    }
+
     override fun getItemViewType(position: Int): Int {
         // DSL传参<优先>
         for (index in 0 until typeVHs.size()) {
