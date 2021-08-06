@@ -47,7 +47,7 @@ dependencies {
     // page
     api "androidx.paging:paging-runtime-ktx:3.0.0"
     /////////////////////////////////////////////////
-    implementation 'com.github.Enjoyee:AndroidUtils:1.0.1'
+    implementation 'com.github.Enjoyee:AndroidUtils:1.0.5'
 }
 
 afterEvaluate {
